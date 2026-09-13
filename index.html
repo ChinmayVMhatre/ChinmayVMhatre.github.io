@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- EDIT: browser tab title -->
+<title>Chinmay Mhatre — Computational Chemistry</title>
+
+<!-- EDIT: one sentence for Google results and link previews -->
+<meta name="description" content="Chinmay Mhatre, computational chemist at the University of Pittsburgh. Machine learning interatomic potentials, reactive force fields, and molecular simulation of MOFs and stainless steel.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <nav aria-label="Sections">
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#software">Software</a>
+    <a href="#talks">Talks</a>
+    <a href="#background">Background</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     The drawing is a cubic framework with one linker missing, a
+     nod to the defective UiO-66 work. Want a photo instead? See
+     the README section "Swapping the drawing for a photo".
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Chinmay Mhatre</h1>
+    <p class="standfirst">I build simulations of chemistry that quantum mechanics can describe but not afford. Machine learning potentials, reactive force fields, and the molecular dynamics that test them.</p>
+    <p class="affil">Research Associate in Computational Chemistry, University of Pittsburgh. PhD in Chemical Engineering, 2026, advised by J. Karl Johnson and John Keith.</p>
+
+    <!-- EDIT: your links. Replace YOUR-USERNAME with your GitHub handle.
+         For the CV, drop the PDF into this folder and name it cv.pdf -->
+    <p class="links">
+      <a href="mailto:mhatrec82@gmail.com">Email</a>
+      <a href="https://scholar.google.com/citations?user=yOHMV2gAAAAJ&hl=en">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/chinmay-m-b4a5a6130/">LinkedIn</a>
+      <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+      <a href="cv.pdf">CV</a>
+    </p>
+  </div>
+
+  <figure class="hero-art" aria-hidden="false">
+    <svg viewBox="0 0 210 200" role="img" aria-labelledby="artTitle">
+      <title id="artTitle">A cubic metal-organic framework with one linker missing</title>
+      <g class="bonds">
+        <line x1="30" y1="170" x2="130" y2="170"/>
+        <line x1="130" y1="170" x2="130" y2="70"/>
+        <line x1="130" y1="70" x2="30" y2="70"/>
+        <line x1="30" y1="70" x2="30" y2="170"/>
+        <line x1="80" y1="130" x2="180" y2="130"/>
+        <line x1="180" y1="130" x2="180" y2="30"/>
+        <line x1="180" y1="30" x2="80" y2="30"/>
+        <line x1="80" y1="30" x2="80" y2="130"/>
+        <line x1="30" y1="170" x2="80" y2="130"/>
+        <line x1="130" y1="170" x2="180" y2="130"/>
+        <line x1="30" y1="70" x2="80" y2="30"/>
+      </g>
+      <!-- the vacancy: drawn as an absence -->
+      <line class="vacancy" x1="130" y1="70" x2="180" y2="30"/>
+      <g class="nodes">
+        <circle cx="30" cy="170" r="7"/><circle cx="130" cy="170" r="7"/>
+        <circle cx="130" cy="70" r="7"/><circle cx="30" cy="70" r="7"/>
+        <circle cx="80" cy="130" r="7"/><circle cx="180" cy="130" r="7"/>
+        <circle cx="180" cy="30" r="7"/><circle cx="80" cy="30" r="7"/>
+      </g>
+    </svg>
+    <figcaption>One missing linker. Order the defects instead of scattering them and isopropanol moves through UiO-66 a hundred times faster.</figcaption>
+  </figure>
+</section>
+
+<!-- ============================================================
+     RESEARCH
+     Four projects, written as prose. To add one, copy an
+     <article> block and change the text inside it.
+     ============================================================ -->
+<section id="research">
+  <h2>Research</h2>
+
+  <article>
+    <h3>Machine learning potentials for reactive systems</h3>
+    <p class="funder">DTRA</p>
+    <p>Reactive events are rare, expensive to label, and poorly represented in equilibrium training data. I benchmarked an in-house active learning protocol against the published standard and cut compute hours in half at equal accuracy, then added a latent-space uncertainty metric so the loop can tell genuinely new configurations from ones it has already seen. With the trained potentials I ran over a hundred molecular dynamics simulations of catalytic kinetics at a scale DFT can't reach, which is how surface poisoning turned up as the root cause of performance loss. The protocol is now running on chemical threat neutralization in MOF-808.</p>
+  </article>
+
+  <article>
+    <h3>Molecular transport in defective UiO-66</h3>
+    <p class="funder">DTRA</p>
+    <p>Slow diffusion was the bottleneck on this material, so I engineered ordered point defects and got a hundredfold improvement in isopropanol diffusivity over a randomly defective structure. Pinning down what controls transport took self- and transport diffusivities across four concentrations, ten independent MSD analyses per point in LAMMPS, and GCMC adsorption in RASPA. Hydroxylated variants suppress transport as loading rises. On the reactivity side, CI-NEB calculations in VASP across four capping-group chemistries showed that the binding mechanism, not sterics, sets hydrolysis rates, and DFT-derived IR spectra gave the experimentalists vibrational fingerprints to check the modified frameworks against.</p>
+  </article>
+
+  <article>
+    <h3>Reactive force fields for stainless steel corrosion</h3>
+    <p class="funder">Naval Research Laboratory</p>
+    <p>Chloride-induced pitting starts at the atomic scale, and modeling it means having parameters that describe chromium oxide passive films breaking down. I'm developing and validating Cr/O/Cl ReaxFF parameters in LAMMPS for exactly that, which is a high-dimensional fitting problem against a small and precious reference set.</p>
+  </article>
+
+  <article>
+    <h3>Thermophysical properties of fuel additives</h3>
+    <p class="funder">Lubrizol</p>
+    <p>Three ZDDP molecules and their precursors had no experimental data at all, which makes synthesis prioritization guesswork. Gibbs ensemble Monte Carlo in Cassandra produced the first critical temperature and pressure estimates for them, validated within ten percent of the densities that were available. I also correlated conformational diversity with dipole moment magnitudes using dimensionality reduction, to connect structure back to the properties that matter.</p>
+  </article>
+</section>
+
+<!-- ============================================================
+     PUBLICATIONS
+     Newest at the top. Add new entries above the first <li>.
+     ============================================================ -->
+<section id="publications">
+  <h2>Publications</h2>
+
+  <ol class="refs">
+    <li>
+      <span class="pub-title"><a href="https://doi.org/10.1021/acs.jctc.5c00920">Reactive Active Learning: An Efficient Approach for Training Reaction Aware Machine Learning Potentials</a></span>
+      <span class="pub-authors">Achar, S. K.; Shukla, P. B.; Mhatre, C. V.; Bernasconi, L.; Vinger, C. Y.; Johnson, J. K.</span>
+      <span class="pub-meta"><em>Journal of Chemical Theory and Computation</em>, 2025, 21(18), 8889–8906.</span>
+    </li>
+    <li>
+      <span class="pub-title"><a href="https://doi.org/10.1021/acs.jpcc.4c02982">The Impact of Missing Linker Defects in UiO-66 on Adsorption and Diffusion of Isopropyl Alcohol</a></span>
+      <span class="pub-authors">Mhatre, C. V.; Wardzala, J. J.; Oliver, M. C.; Islamov, M.; Boone, P.; Wilmer, C.; Huang, L.; Johnson, J. K.</span>
+      <span class="pub-meta"><em>The Journal of Physical Chemistry C</em>, 2024, 128(32), 13577–13587.</span>
+    </li>
+    <li>
+      <span class="pub-title"><a href="https://doi.org/10.3390/nano13111793">Calculation of Self, Corrected, and Transport Diffusivities of Isopropyl Alcohol in UiO-66</a></span>
+      <span class="pub-authors">Mhatre, C. V.; Wardzala, J. J.; Shukla, P. B.; Agrawal, M.; Johnson, J. K.</span>
+      <span class="pub-meta"><em>Nanomaterials</em>, 2023, 13(11), 1793.</span>
+    </li>
+  </ol>
+
+  <h3>Under review and in preparation</h3>
+  <ul class="refs plain">
+    <li>
+      <span class="pub-title">Estimation of Dipole Moments of Zinc Dialkyldithiophosphates and Their Precursors</span>
+      <span class="pub-authors">Johnson, J. K.; Kin Mai Lai, S.; Mhatre, C. V.; Williams, S.; Keith, J. A.; Call, M.; Cormack, G.</span>
+      <span class="pub-meta">Under review.</span>
+    </li>
+    <li>
+      <span class="pub-title">Effect of Capping Group Binding on Chemical Reactivity</span>
+      <span class="pub-authors">Mhatre, C. V.; Gibbons, B.; Morris, A. J.; Johnson, J. K.</span>
+      <span class="pub-meta">In preparation.</span>
+    </li>
+    <li>
+      <span class="pub-title">Developing Cr/O/Cl ReaxFF Parameters to Understand Stainless Steel Depassivation in Saline Environments</span>
+      <span class="pub-authors">Mhatre, C. V.; van Duin, A.; Keith, J. A.</span>
+      <span class="pub-meta">In preparation.</span>
+    </li>
+    <li>
+      <span class="pub-title">Reactions of GB and HD in MOF-808-NH<sub>2</sub> Predicted from Machine Learning Interatomic Potentials</span>
+      <span class="pub-authors">Mhatre, C. V.; Gordon, A. Y.; Ananthabhotala, L. Y.; Achar, S.; Johnson, J. K.</span>
+      <span class="pub-meta">In preparation.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     SOFTWARE
+     Point these at real repositories when they're public.
+     Delete any you'd rather not list.
+     ============================================================ -->
+<section id="software">
+  <h2>Software</h2>
+
+  <dl class="projects">
+    <dt><a href="https://github.com/YOUR-USERNAME">QM9 electronic structure pipeline</a></dt>
+    <dd>Parses Gaussian output at scale to pull out dipole moments, Mayer and Wiberg bond orders, and condensed-to-atoms density matrices, then writes to sharded HDF5 for ML training. Includes SOAP and UMAP embeddings, ReaxFF and Pauling bond orders, and Chemiscope export for browsing 133k molecules.</dd>
+
+    <dt><a href="https://github.com/YOUR-USERNAME">Active learning driver for MLIP training</a></dt>
+    <dd>Iterative sampling, labeling, and retraining against DFT references, with distance- and latent-space uncertainty metrics deciding what goes in the next batch.</dd>
+
+    <dt><a href="https://github.com/YOUR-USERNAME">NEB workflow tooling</a></dt>
+    <dd>ASE and LAMMPS scaffolding for reaction path calculations, including native partition-based NEB runs on SLURM clusters.</dd>
+  </dl>
+</section>
+
+<!-- ============================================================
+     TALKS — a selection. Full list lives in the CV.
+     ============================================================ -->
+<section id="talks">
+  <h2>Talks</h2>
+
+  <ul class="talks">
+    <li><span class="when">Nov 2025</span> <span class="what">Computational design and ML-assisted search of dual-function MOFs towards chemical warfare agent decomposition. <span class="venue">AIChE Annual Meeting</span></span></li>
+    <li><span class="when">Jun 2025</span> <span class="what">C–H bond activation on transition metal carbides: an MLFF approach with reactive active learning. <span class="venue">29th North American Catalysis Society Meeting</span></span></li>
+    <li><span class="when">Oct 2024</span> <span class="what">Reactive force field parametrizations to examine atomic scale processes on stainless steel in chloride environments. <span class="venue">AIChE Annual Meeting</span></span></li>
+    <li><span class="when">Nov 2023</span> <span class="what">Diffusion and adsorption of polar molecules in defective UiO-66. <span class="venue">AIChE Annual Meeting</span></span></li>
+    <li><span class="when">Nov 2022</span> <span class="what">Modeling of adsorption and diffusion of chemical agents and simulants in UiO-66. <span class="venue">AIChE Annual Meeting</span></span></li>
+  </ul>
+  <p class="note">Eleven conference presentations in total. The rest are listed in the <a href="cv.pdf">CV</a>.</p>
+</section>
+
+<!-- ============================================================
+     BACKGROUND — this one really is a sequence, so it's dated.
+     ============================================================ -->
+<section id="background">
+  <h2>Background</h2>
+
+  <ul class="cvlist">
+    <li><span class="when">2026–</span> <span class="what"><strong>Research Associate, Computational Chemistry</strong>, University of Pittsburgh. Sponsored by the Naval Research Laboratory.</span></li>
+    <li><span class="when">2020–2026</span> <span class="what"><strong>PhD, Chemical Engineering</strong>, University of Pittsburgh. Thesis on atomistic phenomena in Zr-based metal-organic frameworks and stainless steel, using classical and quantum mechanical calculations.</span></li>
+    <li><span class="when">2023</span> <span class="what"><strong>Graduate Student Intern</strong>, Chemical Separations Group, Oak Ridge National Laboratory. Benchmarked six free-energy solvation workflows against experimental partition coefficients; the most accurate one became the standard protocol for a DOE purification program.</span></li>
+    <li><span class="when">2022–2025</span> <span class="what"><strong>Board member</strong>, Engineering Graduate Student Organization, University of Pittsburgh. Vice President, Secretary, and Professional Development Officer, running events for 500+ graduate students with a team of eight.</span></li>
+    <li><span class="when">2022–2024</span> <span class="what"><strong>Teaching assistant</strong> for chemical reaction engineering, thermodynamics, and mathematical methods.</span></li>
+    <li><span class="when">2016–2020</span> <span class="what"><strong>BChE, Chemical Engineering</strong>, Institute of Chemical Technology, Mumbai.</span></li>
+  </ul>
+
+  <h3>Tools</h3>
+  <p class="tools">Electronic structure and simulation: VASP, Gaussian, ORCA, Quantum ESPRESSO, LAMMPS, OpenMM, PLUMED, RASPA, Cassandra, CREST, PACKMOL, WHAM. Methods: DFT, molecular dynamics with FEP and metadynamics, MLIP development, ReaxFF parametrization, GCMC and Gibbs ensemble Monte Carlo, vibrational frequency analysis. Machine learning: PyTorch, TensorFlow, MACE, DeepMD, UMA, scikit-learn, equivariant neural networks, VAEs and GANs, Weights &amp; Biases. Day to day: Python with NumPy, pandas, SciPy, ASE, RDKit, pymatgen and UMAP; Linux and Bash; Git; SLURM on GPU clusters; SQL; LaTeX.</p>
+</section>
+
+<section id="contact">
+  <h2>Get in touch</h2>
+  <p>Write to me at <a href="mailto:mhatrec82@gmail.com">mhatrec82@gmail.com</a>. I'm always up for talking about force fields, active learning, or anything where the simulation refuses to behave.</p>
+</section>
+
+</main>
+
+<footer>
+  <!-- EDIT: update the date when you change the page -->
+  <p>Hand-built. Last updated September 2026.</p>
+</footer>
+
+</body>
+</html>
