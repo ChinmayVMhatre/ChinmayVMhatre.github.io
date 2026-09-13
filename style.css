@@ -1,0 +1,296 @@
+/* ==========================================================
+   Chinmay Mhatre — personal site
+
+   Everything you'd want to tweak visually lives in the
+   :root block right below. Change a value there and it
+   updates across the whole page.
+   ========================================================== */
+
+:root {
+  --paper:   #f1f3f0;   /* page background */
+  --ink:     #1c1b2e;   /* body text */
+  --plum:    #47125e;   /* headings */
+  --teal:    #1a7169;   /* links and accents */
+  --muted:   #5d5b6b;   /* dates, captions, small print */
+  --rule:    #d3d7d1;   /* hairlines */
+  --mark:    #d9b84a;   /* the one warm note, used sparingly */
+
+  --serif: "Spectral", Georgia, "Times New Roman", serif;
+  --sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --measure: 68ch;      /* max line length for body text */
+  --page:    50rem;     /* overall content width */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0 1.5rem 5rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.65 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- links ---------- */
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+  padding-bottom: 1px;
+}
+a:hover { border-bottom-color: var(--teal); }
+a:focus-visible {
+  outline: 2px solid var(--plum);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--plum);
+  color: var(--paper);
+  padding: .5rem .75rem;
+  border: 0;
+  z-index: 10;
+}
+
+/* ---------- top nav ---------- */
+
+.masthead {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 1.75rem 0 0;
+}
+.masthead nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: .9375rem;
+}
+.masthead a {
+  color: var(--muted);
+  border-bottom: 0;
+}
+.masthead a:hover { color: var(--plum); }
+
+/* ---------- layout ---------- */
+
+main {
+  max-width: var(--page);
+  margin: 0 auto;
+}
+
+section { padding: 3.5rem 0 0; }
+section + section { border-top: 1px solid var(--rule); margin-top: 3.5rem; }
+
+p { max-width: var(--measure); }
+
+/* ---------- headings ---------- */
+
+h1 {
+  font: 600 clamp(2.5rem, 9vw, 4rem)/1.02 var(--serif);
+  color: var(--plum);
+  letter-spacing: -.02em;
+  margin: 0 0 1.25rem;
+}
+
+h2 {
+  font: 600 1.5rem/1.2 var(--serif);
+  color: var(--plum);
+  margin: 0 0 2rem;
+}
+
+h3 {
+  font: 500 1.0625rem/1.35 var(--sans);
+  margin: 0 0 .35rem;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+  padding-top: 3rem;
+}
+
+.standfirst {
+  font: 400 1.3125rem/1.5 var(--serif);
+  margin: 0 0 1.25rem;
+  max-width: 34ch;
+}
+
+.affil {
+  color: var(--muted);
+  font-size: .9375rem;
+  margin: 0 0 1.5rem;
+  max-width: 46ch;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.1rem;
+  margin: 0;
+  font-size: .9375rem;
+}
+
+/* the framework drawing */
+.hero-art { margin: 0; width: 15rem; }
+.hero-art svg { width: 100%; height: auto; display: block; }
+.hero-art .bonds line {
+  stroke: var(--plum);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.hero-art .vacancy {
+  stroke: var(--mark);
+  stroke-width: 2;
+  stroke-dasharray: 3 6;
+  stroke-linecap: round;
+}
+.hero-art .nodes circle {
+  fill: var(--teal);
+}
+.hero-art figcaption {
+  margin-top: 1rem;
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* One deliberate page-load moment: the framework assembles itself. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-art .bonds line,
+  .hero-art .vacancy {
+    stroke-dashoffset: 160;
+    animation: draw .9s ease-out forwards;
+  }
+  .hero-art .bonds line { stroke-dasharray: 160; }
+  .hero-art .bonds line:nth-child(n+5) { animation-delay: .15s; }
+  .hero-art .bonds line:nth-child(n+9) { animation-delay: .3s; }
+  .hero-art .vacancy { animation-delay: .6s; }
+  .hero-art .nodes circle {
+    opacity: 0;
+    animation: pop .4s ease-out forwards;
+    animation-delay: .75s;
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop  { to { opacity: 1; } }
+}
+
+/* ---------- research ---------- */
+
+#research article { margin-bottom: 2.5rem; }
+#research article:last-child { margin-bottom: 0; }
+
+.funder {
+  color: var(--muted);
+  font-size: .8125rem;
+  margin: 0 0 .6rem;
+}
+
+/* ---------- publications ---------- */
+
+.refs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  counter-reset: ref;
+}
+.refs li {
+  margin-bottom: 1.5rem;
+  max-width: var(--measure);
+}
+.refs li:last-child { margin-bottom: 0; }
+
+.refs span { display: block; }
+
+.pub-title { font-weight: 500; margin-bottom: .15rem; }
+.pub-authors { font-size: .9375rem; color: var(--ink); }
+.pub-meta { font-size: .9375rem; color: var(--muted); }
+
+.refs.plain .pub-title { font-weight: 400; }
+
+.note {
+  font-size: .9375rem;
+  color: var(--muted);
+}
+
+/* ---------- software ---------- */
+
+.projects { margin: 0; }
+.projects dt {
+  font-weight: 500;
+  margin-bottom: .3rem;
+}
+.projects dd {
+  margin: 0 0 1.75rem;
+  max-width: var(--measure);
+}
+.projects dd:last-child { margin-bottom: 0; }
+
+/* ---------- dated lists (talks, background) ---------- */
+
+.talks, .cvlist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+}
+.talks li, .cvlist li {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0 1.25rem;
+  padding: .9rem 0;
+  border-top: 1px solid var(--rule);
+  max-width: var(--measure);
+}
+.talks li:last-child, .cvlist li:last-child { border-bottom: 1px solid var(--rule); }
+
+.when {
+  color: var(--muted);
+  font-size: .875rem;
+  padding-top: .15rem;
+  font-variant-numeric: tabular-nums;
+}
+.venue { color: var(--muted); }
+
+#background h3 { margin-top: 2.5rem; }
+.tools { font-size: .9375rem; }
+
+/* ---------- footer ---------- */
+
+footer {
+  max-width: var(--page);
+  margin: 4rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .875rem;
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 46rem) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero-art { width: 12rem; }
+  .talks li, .cvlist li {
+    grid-template-columns: 1fr;
+    gap: .25rem;
+  }
+  .when { padding-top: 0; }
+}
